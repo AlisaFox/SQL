@@ -129,7 +129,31 @@ HAVING are for selections on groups, while WHERE are for selections on tuples
   GROUP BY rating
   HAVING COUNT(*) >=2
   ```
-  
+#### Views
+A view is an unmaterialized relation, we store just the definition instead of a set of tuples
+``` SQL
+CREATE VIEW ActiveSkaters(sid,sname)
+AS SELECT DISTINCT S.sid, S.sname
+FROM  Skaters S, Participates P
+WHERE S.sid= P.sid
+```
+Sort of like abstraction: presents a summary while hiding details in underlying relations (ex. age of Skaters).
+We can then put ActiveSkaters into a new relation (so `FROM Active Skaters WHERE sid = ....`). We can delete views via DROP VIEW command.
+#### NULLs
+can check if values are NULL by using the comparison operator IS NULL. When we are doing operand operations, like 0 * NULL, the result is always NULL. For logic a bit dif, usual rules apply (ex. A or NULL is True, not NULL)
 
+#### More on JOIN
+four types: (INNER) JOIN, _ OUTER JOIN
+##### Inner Join 
+This one is default, if no match in the other relation, no output
+##### Outer Join 
+LEFT OUTER JOIN: no match in other selection, one dummy record (on right side)
+RIGHT OUTER JOIN: no match in other selection, one dummy record (on left side)
+FULL OUTER JOIN: no match in other selection, one dummy record (on both sides)
+
+## Final Notes
+- SQL is not Turing complete. 
+- DB modifications: Can modify tuples via INSERT INTO / DELETE FROM / UPDATE + SET
+- SQL2 semantics: all conditions in a modification statement must be evaluated by  the system BEFOREany modifications occur.
 
   
