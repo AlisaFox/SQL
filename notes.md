@@ -151,9 +151,13 @@ LEFT OUTER JOIN: no match in other selection, one dummy record (on right side)
 RIGHT OUTER JOIN: no match in other selection, one dummy record (on left side)
 FULL OUTER JOIN: no match in other selection, one dummy record (on both sides)
 
-## Final Notes
+## Misc Notes
 - SQL is not Turing complete. 
 - DB modifications: Can modify tuples via INSERT INTO / DELETE FROM / UPDATE + SET
 - SQL2 semantics: all conditions in a modification statement must be evaluated by  the system BEFOREany modifications occur.
+- when creating tables, we can have naming constraints
+  - `attr INT CONSTRAINT con CHECK (attr >0 AND attr < 100)`
+  - can later drop and recreate 
+    - `ALTER TABLE t DROP CONSTRAINT con`
+    - `ALTER TABLE t ADD CONSTRAINT con CHECK (attr1 <=5 OR attr2 > 5)`
 
-  
