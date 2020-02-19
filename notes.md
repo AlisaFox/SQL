@@ -100,5 +100,7 @@ Ane extension of relational algebra
   - counts the number of different attribute values
 - result is a relation with only one tuple
 - can also use SUM, AVG, MAX, MIN besides COUNT 
-- can combine like ```SQL SELECT AVG(attr1), COUNT(*) ....``` to give a two tuple result
+- can combine like ```SQL
+SELECT AVG(attr1), COUNT(*) ....
+``` to give a two tuple result
   
