@@ -96,7 +96,7 @@ Ane extension of relational algebra
    FROM list
   ```
   - counts the number of tuples in list
--```SQL
+- ``` SQL
    SELECT COUNT (DISTINCT attr)
    FROM list
   ``` 
