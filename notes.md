@@ -76,7 +76,7 @@ a clause can have a clause inside of it, called a subquery
                  FROM list 
                  WHERE attr2 = smth)
 ```
-We can also use NOT IN, and have multiple attributes ```SQL WHERE (a1, a2) IN (SELECT a3, a4....)```
+We can also use NOT IN, and have multiple attributes ``` SQL WHERE (a1, a2) IN (SELECT a3, a4....)```
 
 #### Exists
 EXISTS (relation) is true iff the relation is non-empty
@@ -100,7 +100,7 @@ Ane extension of relational algebra
   - counts the number of different attribute values
 - result is a relation with only one tuple
 - can also use SUM, AVG, MAX, MIN besides COUNT 
-- can combine like ```SQL
+- can combine like ``` SQL
                    SELECT AVG(attr1), COUNT(*) ....
                    ```
                    to give a two tuple result
