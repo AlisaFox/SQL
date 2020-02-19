@@ -22,7 +22,7 @@ when converting from relational algebra,
 - in form `attribute1 op const` or `attribute1 op attribute2`, where op is one of <, >, =, <>, <=, >=, LIKE
   - LIKE is for string operations, ex. `name LIKE '%e_g'`
   - where %: any string, \_: any character
-  - '%y" for all names that end in Y, '\_i%'for all names with i as the second letter
+  - "%y" for all names that end in Y," \_i%" for all names with i as the second letter
 - can combine multiple comparisons via AND, OR, NOT 
 #### Projection notes (SELECT)
 - `SELECT DISTINCT` for duplicate elimination
@@ -49,7 +49,7 @@ when converting from relational algebra,
  FROM list1 JOIN list2
  ON list1.attr = list2.attr
  ```
-is like &Pi;smth (list1 &join; list2) 
+is like &Pi;<sub>smth</sub>  (list1 &bowtie; list2) 
  
 
 
