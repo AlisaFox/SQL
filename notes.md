@@ -101,6 +101,7 @@ Ane extension of relational algebra
 - result is a relation with only one tuple
 - can also use SUM, AVG, MAX, MIN besides COUNT 
 - can combine like ```SQL
-SELECT AVG(attr1), COUNT(*) ....
-``` to give a two tuple result
+                   SELECT AVG(attr1), COUNT(*) ....
+                   ```
+                   to give a two tuple result
   
