@@ -45,11 +45,42 @@ when converting from relational algebra,
  #### Join
  equals cross-product and selection
  ``` SQL
- SELECT smth
- FROM list1 JOIN list2
- ON list1.attr = list2.attr
- ```
-is like &Pi;<sub>smth</sub>  (list1 &bowtie; list2) 
- 
+   SELECT smth
+   FROM list1 JOIN list2
+   ON list1.attr = list2.attr
+   ```
+ is same thing as &Pi;<sub>smth</sub>  (list1 &bowtie; list2) 
+#### Variable naming
+Range Variables: can also use variable names in `FROM list1 A, list2 B` for shortform `A.attr` everywhere else
+#### Union, Intersection, Difference
+- UNION, INTERSECT, EXCEPT
+- must have same number of attributes, and when ordered same attribute type 
+- result is a set (not multiset)
+  - A multiset(bag) may contain the same tuple more than once, although there is no specified order (unlike a list). 
+  - Example: {1, 2, 1, 3} is a multiset, but not a set
+- ``` SQL
+  SELECT desired attributes
+  FROM list of relations
+  WHERE qualification
+  UNION
+  SELECT desired attributes
+  FROM list of relations
+  WHERE qualification
+  ```
+- to enforce multiset semantic, use UNION ALL, INTERSECT ALL, EXCEPT ALL
 
+#### Nested Queries (IN)
+a clause can have a clause inside of it, called a subquery
+``` SQL
+    WHERE  attr IN (SELECT attr 
+                 FROM list 
+                 WHERE attr2 = smth)
+```
+We can also use NOT IN, and have multiple attributes (`SQL WHERE (a1, a2) IN (SELECT a3, a4....)`)
 
+#### Exists
+EXISTS (relation) is true iff the relation is non-empty
+used next to WHERE, ie `WHERE EXISTS`
+
+#### Quantifiers 
+ANY for existential &exists; and ALL for universal &forall;
