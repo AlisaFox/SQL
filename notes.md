@@ -104,8 +104,32 @@ Ane extension of relational algebra
 - result is a relation with only one tuple
 - can also use SUM, AVG, MAX, MIN besides COUNT 
 - can combine like 
+  - ``` SQL
+    SELECT AVG(attr1), COUNT(*) ....
+    ``` 
+  - to give a two tuple result
+#### Grouping
+GROUP BY allows to apply aggrigation to several groups of tuples 
 ``` SQL
-SELECT AVG(attr1), COUNT(*) ....
- ```
- to give a two tuple result
+    SELECT AVG(attr1), MIN (attr2)
+    FROM list
+    GROUP BY attr3
+``` 
+resulting table will have multiple rows, one for each of attr3. More specifically, a group is defined as a set of tuples that have the same value for all attributes in the grouping list. Can add attr3 to the SELECT, and add an ORDER BY under the GROUP BY to make things more orginized.
+
+For proper aggregation, we must either use group by or nested queries. 
+However, aggregate operations cannot be nested.
+
+#### Selections of groups (Having)
+HAVING are for selections on groups, while WHERE are for selections on tuples
+- example: For each rating, find minimum age of the skaters with this rating. Only consider rating levels with at least two skaters
+- ```SQL 
+  SELECT rating, MIN(age)
+  FROM Skaters
+  GROUP BY rating
+  HAVING COUNT(*) >=2
+  ```
+  
+
+
   
