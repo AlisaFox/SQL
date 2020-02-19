@@ -17,7 +17,7 @@ when converting from relational algebra,
  - no elimination of duplicates in SQL
  - tables in relational databases are generally NO sets (but "multisets")
  - results of SQL queries are generally NO sets
-
+## Basics
 #### Selection notes (WHERE)
 - in form `attribute1 op const` or `attribute1 op attribute2`, where op is one of <, >, =, <>, <=, >=, LIKE
   - LIKE is for string operations, ex. `name LIKE '%e_g'`
@@ -76,11 +76,29 @@ a clause can have a clause inside of it, called a subquery
                  FROM list 
                  WHERE attr2 = smth)
 ```
-We can also use NOT IN, and have multiple attributes (`SQL WHERE (a1, a2) IN (SELECT a3, a4....)`)
+We can also use NOT IN, and have multiple attributes `SQL WHERE (a1, a2) IN (SELECT a3, a4....)`
 
 #### Exists
 EXISTS (relation) is true iff the relation is non-empty
-used next to WHERE, ie `WHERE EXISTS`
+(used next to WHERE, ie `WHERE EXISTS`)
 
 #### Quantifiers 
-ANY for existential &exists; and ALL for universal &forall;
+ANY for existential &exist; and ALL for universal &forall;, the syntax is `WHERE attr op ANY (SELECT...`
+
+## A bit more complicated stuff
+#### Aggregation
+Ane extension of relational algebra
+- ```SQL
+   SELECT COUNT(*)
+   FROM list
+  ```
+  - counts the number of tuples in list
+-```SQL
+   SELECT COUNT (DISTINCT attr)
+   FROM list
+  ``` 
+  - counts the number of different attribute values
+- result is a relation with only one tuple
+- can also use SUM, AVG, MAX, MIN besides COUNT 
+- can combine like `SQL SELECT AVG(attr1), COUNT(*) ....` to give a two tuple result
+  
