@@ -23,14 +23,33 @@ when converting from relational algebra,
   - LIKE is for string operations, ex. `name LIKE '%e_g'`
   - where %: any string, \_: any character
   - '%y" for all names that end in Y, '\_i%'for all names with i as the second letter
+- can combine multiple comparisons via AND, OR, NOT 
 #### Projection notes (SELECT)
-- SELECT DISTINCT for duplicate elimination
-- SELECT * for a list of all attributes
+- `SELECT DISTINCT` for duplicate elimination
+- `SELECT *` for a list of all attributes
 - can rename expressions and constants
   - ``` SQL
      SELECT attribute1, attribute2 AS newAttributeName2,
                         attrbute2+1 AS newAttribute3,
                         constant AS newAttribute4
     ```
-  
-- can combine multiple comparisons via AND, OR, NOT 
+- can also order output
+ - ``` SQL
+    SELECT *
+    FROM list 
+    ORDER BY attr1, attr2
+   ```
+ - would produce an ascending list first by attr1, then by attr2
+ #### Cross-product
+ need to list relations in the `FROM` clause, such as `FROM list1, list2`
+ #### Join
+ equals cross-product and selection
+ ``` SQL
+ SELECT smth
+ FROM list1 JOIN list2
+ ON list1.attr = list2.attr
+ ```
+is like &Pi;smth (list1 &join; list2) 
+ 
+
+
