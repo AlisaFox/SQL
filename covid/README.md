@@ -1,4 +1,4 @@
-#COVID
+# COVID
 
 Database of a hospital
 ER diagram, some SQL, and a java applet.
