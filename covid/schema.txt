@@ -1,0 +1,80 @@
+--Alisa Gagina
+--260770497
+
+--entities
+
+CREATE TABLE borough (bname VARCHAR (25) NOT NULL PRIMARY KEY,
+						population INTEGER);
+
+CREATE TABLE personn (pid INTEGER NOT NULL PRIMARY KEY,
+					 name VARCHAR (25),
+					 phone VARCHAR(12),
+					 email VARCHAR (30),
+					 age INTEGER,
+					 streetAdr VARCHAR(50), 
+					 bname VARCHAR (25) NOT NULL,
+					 CONSTRAINT livesin FOREIGN KEY (bname)
+					 		REFERENCES borough (bname)
+					 );
+
+
+CREATE TABLE patient (pid INTEGER NOT NULL PRIMARY KEY, 
+					 CONSTRAINT isa FOREIGN KEY (pid) REFERENCES personn (pid), 
+					 status VARCHAR (10) CHECK (status='infected' OR status = 'recovered' OR status = 'deceased')
+					);	
+
+CREATE TABLE healthcarep (hid INTEGER NOT NULL PRIMARY KEY,
+						 name VARCHAR (25), 
+						 designation VARCHAR (20), 
+						 phone VARCHAR(12)
+						 );
+
+CREATE TABLE observation (num INTEGER NOT NULL, 
+						pid INTEGER NOT NULL, 
+						hid INTEGER NOT NULL, 
+						CONSTRAINT a FOREIGN KEY (pid) REFERENCES patient (pid), 
+						CONSTRAINT b FOREIGN KEY (hid) REFERENCES healthcarep (hid),
+						day DATE,
+						 hour TIME, 
+						 note TEXT, 
+						 PRIMARY KEY (pid, num)
+						 );
+
+CREATE TABLE drug (drugname VARCHAR(30) NOT NULL PRIMARY KEY, 
+					ATC VARCHAR(7)
+					);
+
+CREATE TABLE administration (anum INTEGER NOT NULL, 
+							pid INTEGER NOT NULL, 
+							hid INTEGER NOT NULL, 
+							drugname VARCHAR(30) NOT NULL, 
+							CONSTRAINT a FOREIGN KEY (pid) REFERENCES patient (pid), 
+							CONSTRAINT b FOREIGN KEY (hid) REFERENCES healthcarep (hid), 
+							CONSTRAINT c FOREIGN KEY (drugname) REFERENCES drug (drugname), 
+							day DATE, 
+							hour TIME, 
+							dosage FLOAT,  
+							PRIMARY KEY (pid, anum)
+							);
+
+
+--relations
+
+CREATE TABLE contactwith (person_pid INTEGER NOT NULL, 
+						CONSTRAINT a FOREIGN KEY (person_pid) REFERENCES personn (pid),
+						 patient_pid INTEGER NOT NULL, 
+						 CONSTRAINT b FOREIGN KEY (patient_pid) REFERENCES patient (pid), 
+						 testday DATE, 
+						 testresult VARCHAR (10), 
+						 PRIMARY KEY (person_pid, patient_pid)
+						 );
+
+CREATE TABLE hasSymptoms (person_pid INTEGER NOT NULL, 
+						CONSTRAINT a FOREIGN KEY (person_pid) REFERENCES personn (pid), 
+						patient_pid INTEGER NOT NULL CHECK(person_pid=patient_pid), 
+						CONSTRAINT b FOREIGN KEY (patient_pid) REFERENCES patient (pid), 
+						testday DATE, 
+						testresult VARCHAR (10), 
+						PRIMARY KEY (person_pid)
+						);
+
