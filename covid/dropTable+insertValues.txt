@@ -1,0 +1,63 @@
+
+
+--relations
+
+DROP TABLE contactwith;
+
+DROP TABLE hasSymptoms;
+
+DROP TABLE administration;
+DROP TABLE drug;
+DROP TABLE observation ;
+DROP TABLE healthcarep;
+DROP TABLE infected ;
+DROP TABLE patient;
+DROP TABLE personn;
+DROP TABLE borough ;
+
+INSERT INTO borough VALUES ('Montreal', 5);
+INSERT INTO Personn VALUES(1, 'adam', '604-234-2344', 'hmhc@gmail.com', 32, 'street a', 'Montreal');
+INSERT INTO Personn VALUES(2, 'boy', '60134-2344', 'h2312c@gmail.com', 3, 'street b', 'Montreal');  
+INSERT INTO Personn VALUES(3, 'cake', '604-213344', 'hm123@gmail.com', 31, 'street c', 'Montreal'); 
+INSERT INTO Personn VALUES(4, 'dean', '604-22344', 'dub.vizer@br.com', 323, 'street d', 'Montreal');  
+INSERT INTO Personn VALUES(5, 'eve', '604-2323344', 'hm2311c@gmail.com', 12, 'street e', 'Montreal');
+
+INSERT INTO patient VALUES(2, 'infected');
+INSERT INTO patient VALUES(4, 'infected');
+
+INSERT INTO contactwith VALUES(2, 4, '1000-01-01','pos');
+INSERT INTO contactwith VALUES(3, 4, '1000-02-01','neg');
+INSERT INTO contactwith VALUES(3, 2, '1000-03-01','neg');
+INSERT INTO contactwith VALUES(1, 4, '1000-03-01','neg');
+INSERT INTO contactwith VALUES(5, 4, '1000-03-01','neg');
+
+
+INSERT INTO borough VALUES ('city', 4);
+INSERt INTO Personn VALUES (6, 'Samantha Adam', '2342', 'email', 52, 'rwerstreet', 'city');
+INSERT INTO patient VALUES(6, 'infected');
+INSERT INTO healthcarep VALUES (100, 'doc 1', 'doc', '132124');
+INSERT INTO observation VALUES (1, 6, 100, '1000-01-12', '00:00:00', 'breathing is normal');
+INSERT INTO observation VALUES (2, 6, 100, '1000-01-12', '00:05:00', 'bremeg is normal');
+INSERT INTO observation VALUES (3, 6, 100, '1001-01-12', '00:05:00', 'breathing nope then is normal');
+
+INSERT INTO Personn VALUES(7, 'Smbd', '23421', 'emwail', 2, 'rwereet', 'city');
+INSERT INTO Patient VALUES(7, 'recovered');
+INSERT INTO hasSymptoms VALUES (7, 7,'1000-03-06','pos');
+
+INSERT INTO drug VALUES ('frug a', '2145321');
+INSERT INTO drug VALUES ('drug b', '2131411');
+INSERT INTO administration VALUES(1, 6, 100, 'drug b', '1003-02-24','12:05:00', 0.45);
+INSERT INTO administration VALUES(2, 6, 100, 'drug b', '1003-02-24','12:09:00', 0.5);
+INSERT INTO administration VALUES(3, 6, 100, 'frug a', '1003-02-25','12:09:00', 0.1);
+INSERT INTO administration VALUES(4, 6, 100, 'frug a', '1003-02-26','12:09:00', 0.1);
+INSERT INTO administration VALUES(5, 7, 100, 'frug a', '1003-02-25','12:00:00', 0.1);
+
+INSERT INTO drug VALUES ('tocilizumab', '1233242');
+INSERT INTO administration VALUES(1, 2, 100, 'tocilizumab', '1003-02-25','12:09:00', 0.1);
+INSERT INTO administration VALUES(1, 4, 100, 'tocilizumab', '1003-02-23','12:09:00', 0.1);
+INSERT INTO observation VALUES (1, 2, 100, '1003-02-25', '00:05:00', 'dizz nope then is normal');
+INSERT INTO observation VALUES (2, 2, 100, '1003-02-26', '12:10:00', 'dizz  then is normal');
+INSERT INTO observation VALUES (1, 4, 100, '1003-02-24', '12:10:00', 'dizz normal');
+INSERT INTO administration VALUES(5, 6, 100, 'tocilizumab', '1003-02-23','12:09:00', 0.1);
+INSERT INTO observation VALUES (4, 6, 100, '1001-02-24', '12:10:00', 'dizz normal');
+INSERT INTO observation VALUES (5, 6, 100, '1004-02-24', '12:10:00', 'ayyyy dizzyyy normal');
